@@ -21,8 +21,8 @@ class Cart(Ownable):
     def check_out(self):
         if self.owner.wallet.balance > self.total_amount():
             for item in self.items:
-                self.owner.wallet.deposit(item.price)
-                item.owner.wallet.withdraw(item.price)
+                self.owner.wallet.withdraw(item.price)
+                item.owner.wallet.deposit(item.price)
                 item.owner = self.owner
         self.items.clear()
         # Eliminar pase al codificar el método check_out
